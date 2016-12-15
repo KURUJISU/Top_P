@@ -1,0 +1,6 @@
+ofxAnimatable
+ofxImGui
+ofxJoystick
+ofxJSON
+ofxSceneManager
+ofxScreenCurtain
