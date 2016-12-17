@@ -1,15 +1,32 @@
+﻿
+/**
+ * @file   sandbox.h
+ * @brief  サンドボックスシーン
+ *         各自で作った機能を試すためのシーンです
+ *
+ * @author y.akira
+ * @date   2016.12.14
+ */
 
 #include "precompiled.h"
 
 
 void Sandbox::setup() {
   // Actorの追加
-  // AddActor(make_shared<Player>());
-	AddActor(make_shared<Block>());
-	AddActor(make_shared<Barricade>());
+  AddActor(make_shared<Player>());
+	AddActor(make_shared<Floor>());
 }
 
 void Sandbox::update(float deltaTime) {
+
+	count_ += ofGetLastFrameTime();
+	ofLog() << count_;
+	if (count_ >= 3) {
+		ofLog() << "spone";
+		AddActor(make_shared<Brick>());
+		count_ = 0;
+	}
+
   // Actorのupdate
   UpdateActors(deltaTime);
 }
