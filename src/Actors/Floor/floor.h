@@ -2,15 +2,15 @@
 #pragma once
 
 
-class Barricade : public Actor {
+class Floor : public Actor {
 private:
 	ofVec2f virtualPos_;
 
 public:
-	Barricade();
+	Floor();
 
 	void setup() override;
 	void draw() override;
 
-	void onCollisionEnter(Actor& c_actor) override;
+	void onCollision(Actor* c_actor) override;
 };

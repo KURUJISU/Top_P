@@ -2,20 +2,20 @@
 #include "precompiled.h"
 
 
-Barricade::Barricade() {
-	name_ = "Barricade";
+Floor::Floor() {
+	name_ = "Floor";
 	size_ = ofVec2f(ofGetWindowWidth(), 10);
 	pos_ = ofVec2f(0, ofGetWindowHeight() - 50);
 	tag_ = 1;
 }
 
-void Barricade::setup() {
+void Floor::setup() {
 	enableCollision();
 }
 
-void Barricade::draw() {
+void Floor::draw() {
 	ofSetColor(ofColor(0, 255, 0));
 	ofDrawRectangle(getRectangle());
 }
 
-void Barricade::onCollisionEnter(Actor& c_actor) {}
+void Floor::onCollision(Actor* c_actor) {}
