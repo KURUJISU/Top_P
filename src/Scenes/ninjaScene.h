@@ -13,16 +13,10 @@
 //! @brief テスト用シーンクラス
 class NinjaScene : public ofxScene {
 private:
-	yCamera     cam_;
-	BackGround  bg_;
-
-	shared_ptr<Player> player_;
-
+  
 public:
-	void setup() override;
-	void update(float deltaTime) override;
-	void draw() override;
-	void gui() override;
-
-	void keyPressed(int key) override;
+  void setup() override;
+  void update(float deltaTime) override;
+  void draw() override;
+  
 };

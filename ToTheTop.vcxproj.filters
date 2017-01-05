@@ -22,6 +22,9 @@
 		<ClCompile Include="src\Actors\Brick\brickSpawner.cpp">
 			<Filter>src\Actors\Brick</Filter>
 		</ClCompile>
+		<ClCompile Include="src\Actors\Leveler\leveler.cpp">
+			<Filter>src\Actors\Leveler</Filter>
+		</ClCompile>
 		<ClCompile Include="src\Actors\Player\duckingState.cpp">
 			<Filter>src\Actors\Player</Filter>
 		</ClCompile>
@@ -48,6 +51,9 @@
 		</ClCompile>
 		<ClCompile Include="src\Actors\spawner.cpp">
 			<Filter>src\Actors</Filter>
+		</ClCompile>
+		<ClCompile Include="src\Actors\WarpZone\warpZone.cpp">
+			<Filter>src\Actors\WarpZone</Filter>
 		</ClCompile>
 		<ClCompile Include="src\BackGround\backGround.cpp">
 			<Filter>src\BackGround</Filter>
@@ -159,8 +165,14 @@
 		<Filter Include="src\Actors\Brick">
 			<UniqueIdentifier>{21D465C1-8909-4F86-5E7A-7F6C}</UniqueIdentifier>
 		</Filter>
+		<Filter Include="src\Actors\Leveler">
+			<UniqueIdentifier>{04D23AA2-4520-BCE6-5075-89B3}</UniqueIdentifier>
+		</Filter>
 		<Filter Include="src\Actors\Player">
 			<UniqueIdentifier>{D0A67185-512C-852A-E43C-6E7D}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="src\Actors\WarpZone">
+			<UniqueIdentifier>{79C06738-ACFB-B8C0-6649-5F35}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\BackGround">
 			<UniqueIdentifier>{E9731219-29BC-E0D5-0D69-DEA1}</UniqueIdentifier>
@@ -257,6 +269,9 @@
 		<ClInclude Include="src\Actors\Brick\brickSpawner.h">
 			<Filter>src\Actors\Brick</Filter>
 		</ClInclude>
+		<ClInclude Include="src\Actors\Leveler\leveler.h">
+			<Filter>src\Actors\Leveler</Filter>
+		</ClInclude>
 		<ClInclude Include="src\Actors\Player\player.h">
 			<Filter>src\Actors\Player</Filter>
 		</ClInclude>
@@ -268,6 +283,9 @@
 		</ClInclude>
 		<ClInclude Include="src\Actors\spawner.h">
 			<Filter>src\Actors</Filter>
+		</ClInclude>
+		<ClInclude Include="src\Actors\WarpZone\warpZone.h">
+			<Filter>src\Actors\WarpZone</Filter>
 		</ClInclude>
 		<ClInclude Include="src\BackGround\backGround.h">
 			<Filter>src\BackGround</Filter>
