@@ -15,7 +15,7 @@
 
 //! カウンター用グローバル変数
 uintmax_t g_uniqueIdCounter = 0;
-uintmax_t Actor::uniqueId() {
+uintmax_t Actor::generateUid() {
   // return してからカウンターを増やす
   return g_uniqueIdCounter++;
 }
@@ -24,13 +24,15 @@ uintmax_t Actor::uniqueId() {
  * @brief アクターのコンストラクタ
  *        メンバ変数の初期化をしています
  */
-Actor::Actor() :
-  uid_(uniqueId()),
-  name_("NoName"),
-  finishSetup_(false),
-  enableUpdate_(false),
-  enableCollision_(false),
-  isDead_(false) {}
+Actor::Actor()
+  : uid_            ( generateUid() )
+  , name_           ( "NoName"      )
+  , tag_            ( NONE          )
+  , finishSetup_    ( false         )
+  , enableUpdate_   ( false         )
+  , enableCollision_( false         )
+  , isDead_(false)
+{}
 
 // ---------------------------------------------------------------------
 //

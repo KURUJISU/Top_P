@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['remove',['remove',['../class_state_manager.html#a0162883a90168f96374d30d96151ce45',1,'StateManager']]]
+  ['lastframe',['LastFrame',['../class_game_local.html#a16831e0b604eeb1054239e7a4f54b841',1,'GameLocal']]]
 ];

@@ -37,6 +37,9 @@ void UpdateActors(float deltaTime) {
     // setupを実行していなければsetupを実行する
     if (!actor->hasSetup()) {
       actor->setup();
+      if (actor->shouldUpdate()) {
+        actor->update(deltaTime);
+      }
     }
     else
     // updateが有効になっていればupdateを実行
@@ -80,6 +83,15 @@ void UpdateActors(float deltaTime) {
 void DrawActors() {
   for (auto& actor : g_actorsList) {
     actor->draw();
+  }
+}
+
+/**
+ * @brief 登録されたアクターのGuiを描画します
+ */
+void DrawActorsGui() {
+  for (auto& actor : g_actorsList) {
+    actor->gui();
   }
 }
 

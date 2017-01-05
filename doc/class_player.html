@@ -112,6 +112,18 @@ Player の継承関係図</div>
 <tr class="separator:a9acd4c2abd2a98d54a4bc574452c20a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7abe0fbf95b42b9ff4a2c0c7d334bc68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a7abe0fbf95b42b9ff4a2c0c7d334bc68">draw</a> () override</td></tr>
 <tr class="separator:a7abe0fbf95b42b9ff4a2c0c7d334bc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ccb668dcca32875563c18b74b75316f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a3ccb668dcca32875563c18b74b75316f">onFloor</a> () const</td></tr>
+<tr class="separator:a3ccb668dcca32875563c18b74b75316f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6444e72090371676665ec95a50bc7d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#aa6444e72090371676665ec95a50bc7d1">onFloor</a> (bool f)</td></tr>
+<tr class="separator:aa6444e72090371676665ec95a50bc7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c8fc590474d1afa2e188c0c62743936"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a8c8fc590474d1afa2e188c0c62743936">getJumpPow</a> () const</td></tr>
+<tr class="separator:a8c8fc590474d1afa2e188c0c62743936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eb6e498f409d9560322e9593c3d03ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a0eb6e498f409d9560322e9593c3d03ad">setJumpPow</a> (float newJumpPow)</td></tr>
+<tr class="separator:a0eb6e498f409d9560322e9593c3d03ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ee847dba1b210acafba2afce56b925"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a87ee847dba1b210acafba2afce56b925">getGravity</a> () const</td></tr>
+<tr class="separator:a87ee847dba1b210acafba2afce56b925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad82de4935431f08e6c847480d52ca633"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#ad82de4935431f08e6c847480d52ca633">getMoveSpeed</a> ()</td></tr>
+<tr class="separator:ad82de4935431f08e6c847480d52ca633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd83009c903f285fe63722f181cb402a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#acd83009c903f285fe63722f181cb402a">onCollision</a> (<a class="el" href="class_actor.html">Actor</a> *c_actor) override</td></tr>
 <tr class="separator:acd83009c903f285fe63722f181cb402a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_actor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_actor')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_actor.html">Actor</a> に属する継承公開メンバ関数</td></tr>
@@ -269,7 +281,88 @@ Player の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#acd760a99c63d562920841c7a0318a3e3">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00032">32</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00055">55</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a87ee847dba1b210acafba2afce56b925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ee847dba1b210acafba2afce56b925">&sect;&nbsp;</a></span>getGravity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Player::getGravity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00050">50</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a8c8fc590474d1afa2e188c0c62743936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c8fc590474d1afa2e188c0c62743936">&sect;&nbsp;</a></span>getJumpPow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Player::getJumpPow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00047">47</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad82de4935431f08e6c847480d52ca633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad82de4935431f08e6c847480d52ca633">&sect;&nbsp;</a></span>getMoveSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Player::getMoveSpeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00051">51</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -299,7 +392,90 @@ Player の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#ade731ab1129c7b6876191933941e5e4d">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00036">36</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00061">61</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a3ccb668dcca32875563c18b74b75316f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ccb668dcca32875563c18b74b75316f">&sect;&nbsp;</a></span>onFloor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Player::onFloor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00044">44</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa6444e72090371676665ec95a50bc7d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6444e72090371676665ec95a50bc7d1">&sect;&nbsp;</a></span>onFloor() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::onFloor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00045">45</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0eb6e498f409d9560322e9593c3d03ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eb6e498f409d9560322e9593c3d03ad">&sect;&nbsp;</a></span>setJumpPow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::setJumpPow </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>newJumpPow</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00048">48</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -328,7 +504,7 @@ Player の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#a64c3aed4bc53afa6cda37e074e6b6305">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00023">23</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00028">28</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -358,7 +534,7 @@ Player の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#aeae78eb901e55b041d43fbee7cfd7c37">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00028">28</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00046">46</a> 行目に定義があります。</p>
 
 </div>
 </div>

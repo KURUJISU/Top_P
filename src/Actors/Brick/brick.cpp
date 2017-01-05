@@ -1,13 +1,21 @@
+﻿
+/**
+ * @file   brick.cpp
+ * @brief  レンガ
+ *
+ * @author y.akira
+ * @date   2016.12.29
+ */
 
 #include "precompiled.h"
 
 
 Brick::Brick() {
 	name_ = "Brick";
-	size_ = ofVec2f(100, 30);
-	pos_ = ofVec3f(ofGetWindowWidth() / 2, -size_.y);
-	vel_ = ofVec3f(0, 50.0f);
-	tag_ = 1;
+	tag_  =  BRICK ;
+  
+  color_ = ofColor(30, 30, 30, 255);
+  round_ = 4;
 }
 
 void Brick::setup() {
@@ -16,16 +24,59 @@ void Brick::setup() {
 }
 
 void Brick::update(float deltaTime) {
-	pos_.y += vel_.y * deltaTime;
+  x_.update(deltaTime);
+  y_.update(deltaTime);
+  
+  pos_.set(x_, y_);
 }
 
 void Brick::draw() {
-	ofSetColor(ofColor(255, 0, 0));
-	ofDrawRectangle(getRectangle());
+	ofSetColor(color_);
+  ofDrawRectRounded(getRectangle(), round_);
 }
 
-void Brick::onCollision(Actor* c_actor) {
-	if (c_actor->getTag() == 1) {
-		vel_ = ofVec2f(0, 0);
-	}
+void Brick::onCollision(Actor* c_actor) {}
+
+
+/**
+ * @brief 指定した位置に移動させる
+ * @param [in] pos   移動先の地点
+ * @param [in] curve イージングの種類
+ * @param [in] time  アニメーションする時間
+ */
+void Brick::moveTo(const ofVec2f& pos, AnimCurve curve, float time) {
+  x_.animateFromTo(pos_.x, pos.x);
+  y_.animateFromTo(pos_.y, pos.y);
+  
+  x_.setDuration(time);
+  y_.setDuration(time);
+  
+  x_.setCurve(curve);
+  y_.setCurve(curve);
+}
+
+/**
+ * @brief 指定した位置に移動させる
+ * @param [in] x     移動先のx座標
+ * @param [in] y     移動先のy座標
+ * @param [in] curve イージングの種類
+ * @param [in] time  アニメーションする時間
+ */
+void Brick::moveTo(float x, float y, AnimCurve curve, float time) {
+  x_.animateFromTo(pos_.x, x);
+  y_.animateFromTo(pos_.y, y);
+  
+  x_.setDuration(time);
+  y_.setDuration(time);
+  
+  x_.setCurve(curve);
+  y_.setCurve(curve);
+}
+
+/**
+ * @brief 矩形の角を丸める数値を設定する
+ * @param [in] r 角を丸める数値
+ */
+void Brick::setRectRound(float r) {
+  round_ = r;
 }

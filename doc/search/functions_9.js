@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['player',['Player',['../class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8',1,'Player']]],
-  ['pop',['pop',['../class_state_manager.html#ac33e949b156eae623755e59161c1700f',1,'StateManager']]],
-  ['push',['push',['../class_state_manager.html#adff561a2e77d3897e077a0682fcd99f6',1,'StateManager']]]
+  ['keypressed',['keyPressed',['../classof_app.html#a957d3197364bbac8e67eaa4f15b28ad3',1,'ofApp::keyPressed()'],['../class_yanai_scene.html#ac7e9da8e2e1f40062557bdc616191e26',1,'YanaiScene::keyPressed()']]],
+  ['keyreleased',['keyReleased',['../classof_app.html#aa1503a87453bcfdd395fe4acca5d91a0',1,'ofApp']]]
 ];

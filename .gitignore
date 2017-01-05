@@ -2,16 +2,14 @@
 /Build
 /obj
 
-/src/Scenes/sandbox.h
-/src/Scenes/sandbox.cpp
-
-*.app
-*.dll
-*.exe
-*.exp
-*.lib
+/bin/*.app
+/bin/*.dll
+/bin/*.exe
+/bin/*.exp
+/bin/*.lib
 
 # XCode
+*.xcodeproj
 *.pbxuser
 *.perspective
 *.perspectivev3
@@ -19,6 +17,9 @@
 *.mode2v3
 
 # Visual Studio
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
 *.sdf
 *.opensdf
 *.suo
@@ -43,3 +44,5 @@ examples/ios/**/mediaAssets
 Thumbs.db
 # Folder config file
 Desktop.ini
+
+!/tools/*.app

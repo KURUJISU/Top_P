@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['color_5f',['color_',['../class_actor.html#a0416ad14b664d85cc910befb7cc9deef',1,'Actor']]]
+  ['a',['A',['../class_input.html#a4384d274054ba7fc7d64de0fed8b4df5',1,'Input']]],
+  ['actor_5f',['actor_',['../class_spawner.html#a56e0876c07b3a387c30c176499f59f10',1,'Spawner']]]
 ];

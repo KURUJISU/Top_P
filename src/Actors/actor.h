@@ -16,8 +16,8 @@
  */
 class Actor {
 private:
-  uintmax_t    uid_;       // 固有識別id
-  uintmax_t    uniqueId(); // 固有idを生成する
+  uintmax_t    uid_;          // 固有識別id
+  uintmax_t    generateUid(); // 固有idを生成する
   
   bool         finishSetup_;
   bool         enableUpdate_;
@@ -46,6 +46,7 @@ public:
   virtual void setup() {}
   virtual void update(float deltaTime) {}
   virtual void draw() {}
+  virtual void gui() {}
   
   virtual void onCollision(Actor* c_actor) {}
   

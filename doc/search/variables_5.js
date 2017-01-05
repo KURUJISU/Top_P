@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rect_5f',['rect_',['../class_actor.html#ab10a4e51048d92a115d83dbd642f658f',1,'Actor']]]
+  ['isdead_5f',['isDead_',['../class_actor.html#a6fe252d04098795ddfa335231e5ca6b0',1,'Actor::isDead_()'],['../classui_base.html#a9402fff01cfee0904e561ccbda7fecc4',1,'uiBase::isDead_()']]]
 ];

@@ -10,6 +10,7 @@
 
 #pragma once
 
+
 /**
  * @brief oFに登録される最上部のアプリクラスです
  */
@@ -20,9 +21,13 @@ private:
   
   ofxImGui         gui_;       //!< これを使ってGuiの描画を可能にします
   
+  void gui();
+  
 public:
   void setup();
   void update();
   void draw();
 
+  void keyPressed(int key);
+	void keyReleased(int key);
 };

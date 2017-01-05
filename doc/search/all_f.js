@@ -1,5 +1,14 @@
 var searchData=
 [
-  ['update',['update',['../class_actor.html#aeae78eb901e55b041d43fbee7cfd7c37',1,'Actor::update()'],['../class_player.html#a9acd4c2abd2a98d54a4bc574452c20a7',1,'Player::update()'],['../class_standing_state.html#a5adcad88768b5af414b59e3a6b562a4c',1,'StandingState::update()'],['../class_state_base.html#a595605db411acf41344ad9cf57bc5b6b',1,'StateBase::update()'],['../class_state_manager.html#aeed67d03320c85dbea11b5ffe761c1c5',1,'StateManager::update()'],['../classof_app.html#afef41ea4aee5a22ea530afba33ae7a7b',1,'ofApp::update()'],['../class_game_main.html#af2e6522725781847dcb1d7d5a8d6ac56',1,'GameMain::update()'],['../class_game_title.html#aa95d23a2457ad0419adb9ad13f337ca7',1,'GameTitle::update()'],['../class_sandbox.html#a7a0b6599a789346971516611b8495d6b',1,'Sandbox::update()']]],
-  ['updateactors',['UpdateActors',['../actor_manager_8cpp.html#a02b49fa55ac9bafceb861367852ac26f',1,'UpdateActors(float deltaTime):&#160;actorManager.cpp'],['../actor_manager_8h.html#a02b49fa55ac9bafceb861367852ac26f',1,'UpdateActors(float deltaTime):&#160;actorManager.cpp']]]
+  ['player',['Player',['../class_player.html',1,'Player'],['../class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8',1,'Player::Player()'],['../actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e',1,'PLAYER():&#160;actorTags.h']]],
+  ['player_2ecpp',['player.cpp',['../player_8cpp.html',1,'']]],
+  ['player_2eh',['player.h',['../player_8h.html',1,'']]],
+  ['playerstate',['PlayerState',['../player_state_8h.html#a3c730f37b1b3a893159bada67637fdb1',1,'playerState.h']]],
+  ['playerstate_2ecpp',['playerState.cpp',['../player_state_8cpp.html',1,'']]],
+  ['playerstate_2eh',['playerState.h',['../player_state_8h.html',1,'']]],
+  ['pop',['pop',['../class_state_manager.html#ac33e949b156eae623755e59161c1700f',1,'StateManager']]],
+  ['pos_5f',['pos_',['../class_actor.html#af03ef17fa4a9de47d88446a0b6dba246',1,'Actor::pos_()'],['../classui_base.html#a29be497b974798b892c4812f4ad89ced',1,'uiBase::pos_()']]],
+  ['precompiled_2ecpp',['precompiled.cpp',['../precompiled_8cpp.html',1,'']]],
+  ['precompiled_2eh',['precompiled.h',['../precompiled_8h.html',1,'']]],
+  ['push',['push',['../class_state_manager.html#adff561a2e77d3897e077a0682fcd99f6',1,'StateManager']]]
 ];

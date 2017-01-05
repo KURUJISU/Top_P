@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ofapp',['ofApp',['../classof_app.html',1,'']]]
+  ['duckingstate',['DuckingState',['../class_ducking_state.html',1,'']]]
 ];

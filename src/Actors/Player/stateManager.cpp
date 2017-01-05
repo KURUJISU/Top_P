@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   stateManager.h
  * @brief  状態を管理するクラス
@@ -17,11 +17,12 @@ StateManager::StateManager()
   states_.resize(MAX_STACK);
 }
 
-void StateManager::update(float deltaTime, Player* player, ofxJoystick& input) {
+void StateManager::update(float deltaTime, Player* player, StateManager* stateMgr, ofxJoystick& input) {
 
   // 現在のスタックを処理する
   // 先頭の状態だけhandleInputを呼ぶ
-  states_[index_].front()->handleInput(player, input);
+  // if err 状態の無いスタックにアクセスしている, may be pushしたあとにaddしてない
+  states_[index_].front()->handleInput(player, stateMgr, input);
   
   // 全ての状態のupdateを呼ぶ
   for (auto& state : states_[index_]) {
@@ -32,10 +33,8 @@ void StateManager::update(float deltaTime, Player* player, ofxJoystick& input) {
 void StateManager::draw(Player* player) {
 
   // 現在のスタックの処理をする
-  // 全ての状態のdrawを呼ぶ
-  for (auto& state : states_[index_]) {
-    state->draw(player);
-  }
+  // 先頭の状態だけdrawを呼ぶ
+  states_[index_].front()->draw(player);
 }
 
 void StateManager::onCollision(Player* player, Actor*  c_actor) {
