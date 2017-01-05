@@ -15,11 +15,11 @@ BrickSpawner::BrickSpawner() {
   tag_   =  BRICK_SPAWNER;
   actor_ = make_shared<Brick>();
   
-  color_ = ofColor(200, 0, 0, 60);
+  color_ = ofColor(40, 40, 40, 255);
 }
 
 void BrickSpawner::draw() {
-  ofSetColor(color_);
+  ofSetColor(ofColor(200, 0, 0, 50));
   ofDrawRectRounded(getRectangle(), 4);
 }
 
@@ -29,5 +29,6 @@ void BrickSpawner::set(AnimCurve curve, float time) {
   
   brick->setPos(pos_ + offset);
   brick->setSize(size_);
+  brick->setColor(color_);
   brick->moveTo(pos_, curve, time);
 }

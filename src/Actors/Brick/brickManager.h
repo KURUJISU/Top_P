@@ -35,11 +35,5 @@ public:
 	void draw() override;
   void gui() override;
   
-  float getInterval() const;
-  float getSpawnTime() const;
-  float getFallTime() const;
-  
-  void  setInterval(float interval);
-  void  setSpawnTime(float time);
-  void  setFallTime(float time);
+  void setInterval(float interval);
 };

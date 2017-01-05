@@ -10,33 +10,32 @@
 #include "precompiled.h"
 
 
-void YanaiScene::moveCam() {
+void YanaiScene::setup() {
+  cam_.setup();
+  bg_.setup();
+  
+  AddActor(make_shared<BrickManager>());
+  
+  player_ = make_shared<Player>();
+  player_->setPos(g_local->WindowHalfSize());
+  shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
+  spwPlayer->setActor(player_);
+  spwPlayer->setSpawnTime(3);
+  AddActor(spwPlayer);
+  
+  offsetY_ = player_->getPos().y;
+  
+  AddUI(make_shared<uiMeter>());
+}
+
+void YanaiScene::update(float deltaTime) {
   ofVec2f pos = cam_.getPos();
   if (pos.y + offsetY_ <= player_->getPos().y) {
     int offset = player_->getPos().y - (pos.y + offsetY_);
     pos.y += offset;
     cam_.setPos(pos);
   }
-}
 
-void YanaiScene::setup() {
-  cam_.setup();
-  bg_.setup();
-  
-  player_ = make_shared<Player>();
-  player_->setPos(g_local->WindowHalfSize());
-  shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
-  spwPlayer->setActor(player_);
-  spwPlayer->setSpawnTime(1);
-  AddActor(spwPlayer);
-  
-  offsetY_ = g_local->Height() * 0.6f;
-  
-  AddActor(make_shared<Leveler>());
-}
-
-void YanaiScene::update(float deltaTime) {
-  moveCam();
   bg_.update(deltaTime);
   
   UpdateActors(deltaTime);
