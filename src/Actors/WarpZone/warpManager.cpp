@@ -5,8 +5,7 @@
 WarpManager::WarpManager() {
 	name_ = "WarpManager";
 	tag_ = WARP_MANAGER;
-
-	val_ = 0;
+	destPos_ = ofVec2f::zero();
 }
 
 void WarpManager::setup() {
@@ -21,14 +20,13 @@ void WarpManager::update(float deltaTime) {
 }
 
 void WarpManager::spawnWarp() {
-	ofVec2f spawnPos = ofVec2f(ofRandom(0, g_local->Width()), 
-		(g_local->Height() - 200) + (val_ * g_local->HalfHeight()));
-	ofVec2f destPos = ofVec2f(spawnPos.x, 
-		(g_local->Height() + g_local->HalfHeight()) + (val_ * g_local->HalfHeight()));
+	ofVec2f spawnPos = ofVec2f(ofRandom(100, g_local->Width() - 100),
+		destPos_.y + (g_local->Height() + ofRandom(-100, 100)));
+	destPos_ = ofVec2f(g_local->HalfWidth(),
+		spawnPos.y + (g_local->Height()));
 
 	warpZone_ = make_shared<WarpZone>();
 	warpZone_->setPos(spawnPos);
-	warpZone_->setDistination(destPos);
+	warpZone_->setDistination(destPos_);
 	AddActor(warpZone_);
-	val_++;
 }
