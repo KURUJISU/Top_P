@@ -4,10 +4,11 @@
 
 class WarpManager : public Actor {
 private:
-	vector<shared_ptr<WarpZone>> warpZones_;
+	shared_ptr<WarpZone> warpZone_;
 	ofVec2f spawnPos_;
 	ofVec2f destPos_;
 	int val_;
+	float count_;
 
 	void spawnWarp();
 
@@ -15,7 +16,4 @@ public:
 	WarpManager();
 	void setup() override;
 	void update(float deltaTime) override;
-
-	void setDestPos(const ofVec2f pos);
-	void setSpawnPos(const ofVec2f pos);
 };

@@ -5,35 +5,33 @@
 WarpManager::WarpManager() {
 	name_ = "WarpManager";
 	tag_ = WARP_MANAGER;
+
+	val_ = 0;
+	count_ = 0;
 }
 
 void WarpManager::setup() {
-	spawnPos_ = ofVec2f(g_local->HalfWidth(), (g_local->Height() + 100));
-	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height() * 2);
-
-	for (val_ = 1; warpZones_.size() < 5;) {
-		spawnWarp();
-		val_++;
-	}
+	spawnWarp();
 
 	enableUpdate();
 }
 
 void WarpManager::update(float deltaTime) {
-	if (warpZones_.front()->isDead()) {
-		warpZones_.erase(warpZones_.begin());
+	if (warpZone_->isDead()) {
 		spawnWarp();
-		val_++;
+		count_ = 0;
 	}
 }
 
 void WarpManager::spawnWarp() {
-	shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
-	warpZone->setPos(ofVec2f(spawnPos_.x, spawnPos_.y * val_));
-	warpZone->setDistination(ofVec2f(destPos_.x, destPos_.y*val_));
-	AddActor(warpZone);
-	warpZones_.emplace_back(warpZone);
-}
+	spawnPos_ = ofVec2f(ofRandom(0, g_local->Width()), 
+		(g_local->Height() - 200) + (val_ * g_local->HalfHeight()));
+	destPos_ = ofVec2f(0, 
+		(g_local->Height() + g_local->HalfHeight()) + (val_ * g_local->HalfHeight()));
 
-void WarpManager::setDestPos(ofVec2f pos) { destPos_ = pos; }
-void WarpManager::setSpawnPos(ofVec2f pos) { spawnPos_ = pos; }
+	warpZone_ = make_shared<WarpZone>();
+	warpZone_->setPos(ofVec2f(spawnPos_.x, spawnPos_.y));
+	warpZone_->setDistination(ofVec2f(warpZone_->getPos().x, destPos_.y));
+	AddActor(warpZone_);
+	val_++;
+}
