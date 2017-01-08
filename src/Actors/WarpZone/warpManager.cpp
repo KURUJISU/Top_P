@@ -5,15 +5,28 @@
 WarpManager::WarpManager() {
 	name_ = "WarpManager";
 	tag_ = WARP_MANAGER;
+
+	player_ = nullptr;
+	spawnPos_ = ofVec2f(ofRandom(100, g_local->Width() - 100),
+		(g_local->Height()));
+	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height());
 }
 
 void WarpManager::setup() {
-	player_ = FindActor(PLAYER);
-	spawnWarp();
+	warpZone_ = make_shared<WarpZone>();
+	warpZone_->setPos(spawnPos_);
+	warpZone_->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone_->getPos().y));
+	AddActor(warpZone_);
+
 	enableUpdate();
 }
 
 void WarpManager::update(float deltaTime) {
+	if (FindActor(PLAYER)) {
+		player_ = FindActor(PLAYER);
+	}
+	else { return; }
+
 	if (warpZone_->isDead()) {
 		spawnWarp();
 	}
@@ -21,18 +34,13 @@ void WarpManager::update(float deltaTime) {
 	if ((player_->getPos().y - 200) > warpZone_->getPos().y) {
 		warpZone_->destroy();
 	}
-
-	ofLog() << player_->getPos().y;
 }
 
 void WarpManager::spawnWarp() {
-	ofVec2f spawnPos = ofVec2f(ofRandom(100, g_local->Width() - 100),
-		player_->getPos().y + (g_local->Height() + ofRandom(-100, 100)));
-	ofVec2f destPos = ofVec2f(g_local->HalfWidth(),
-		spawnPos.y + (g_local->Height()));
+	spawnPos_.x = ofRandom(100, g_local->Width() - 100);
 
 	warpZone_ = make_shared<WarpZone>();
-	warpZone_->setPos(spawnPos);
-	warpZone_->setDistination(destPos);
+	warpZone_->setPos(ofVec2f(spawnPos_.x, spawnPos_.y + player_->getPos().y));
+	warpZone_->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone_->getPos().y));
 	AddActor(warpZone_);
 }
