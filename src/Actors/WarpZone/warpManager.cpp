@@ -7,7 +7,7 @@ WarpManager::WarpManager() {
 	tag_ = WARP_MANAGER;
 
 	player_ = nullptr;
-	spawnPos_ = ofVec2f(ofRandom(100, g_local->Width() - 100),
+	spawnPos_ = ofVec2f(ofRandom(spwPosXMin_, spwPosXMax_),
 		(g_local->Height()));
 	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height());
 }
@@ -31,13 +31,13 @@ void WarpManager::update(float deltaTime) {
 		spawnWarp();
 	}
 
-	if ((player_->getPos().y - 200) > warpZone_->getPos().y) {
+	if ((player_->getPos().y - limitPos_) > warpZone_->getPos().y) {
 		warpZone_->destroy();
 	}
 }
 
 void WarpManager::spawnWarp() {
-	spawnPos_.x = ofRandom(100, g_local->Width() - 100);
+	spawnPos_.x = ofRandom(spwPosXMin_, spwPosXMax_);
 
 	warpZone_ = make_shared<WarpZone>();
 	warpZone_->setPos(ofVec2f(spawnPos_.x, spawnPos_.y + player_->getPos().y));
