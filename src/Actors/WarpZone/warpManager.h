@@ -5,7 +5,7 @@
 class WarpManager : public Actor {
 private:
 	shared_ptr<WarpZone> warpZone_;
-	ofVec2f destPos_;
+	shared_ptr<Actor> player_;
 	void spawnWarp();
 public:
 	WarpManager();
