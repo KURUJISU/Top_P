@@ -25,6 +25,10 @@
 #include "ofxAnimatable.h"
 #include "ofxImGui.h"
 #include "ofxJSON.h"
+// Add a typedef for a shorter type name
+class ofxJSONElement;
+typedef ofxJSONElement ofxJSON;
+
 #include "ofxJoystick.h"
 #include "ofxSceneManager.h"
 #include "ofxScreenCurtain.h"
@@ -49,6 +53,7 @@
 // --------------------------------------------------------
 // UserInterface
 // --------------------------------------------------------
+#include "UserInterface/uiTags.h"
 #include "UserInterface/uiBase.h"
 #include "uiManager.h"
 
@@ -65,12 +70,16 @@
 #include "Actors/Player/player.h"
 #include "Actors/Player/stateManager.h"
 #include "Actors/Player/playerState.h"
+#include "Actors/Player/teleportCursor.h"
 
 #include "Actors/Brick/brick.h"
 #include "Actors/Brick/brickManager.h"
 #include "Actors/Brick/brickSpawner.h"
 
 #include "Actors/WarpZone/warpZone.h"
+#include "Actors/WarpZone/warpManager.h"
+
+#include "Actors/Leveler/leveler.h"
 
 // --------------------------------------------------------
 // Scenes

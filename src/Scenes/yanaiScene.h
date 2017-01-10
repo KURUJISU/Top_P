@@ -17,8 +17,12 @@ private:
   BackGround  bg_;
   
   shared_ptr<Player> player_;
-  float offsetY_;
+  shared_ptr<uiMeter> meter_;
+  
+  float camOffsetMin_;
+  float camOffsetMax_;
 
+  void moveCam();
   
 public:
   void setup() override;

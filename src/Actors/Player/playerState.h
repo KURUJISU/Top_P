@@ -18,9 +18,11 @@ enum PlayerState {
   DUCKING,      ///< しゃがみ
   MOVING,       ///< 移動
   JUMPING,      ///< ジャンプ
-  Teleport,     ///< テレポート(スキル)
+  TELEPORT,     ///< テレポート(スキル)
 };
 
+
+class TeleportCursor;
 
 /**
  * @brief 状態の基底クラス
@@ -82,6 +84,7 @@ public:
   virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
   virtual void draw(Player* player) override;
+  virtual void onCollision(Player* player, Actor* c_actor) override;
 };
 
 
@@ -117,17 +120,16 @@ public:
 //! 状態クラス(テレポート)
 class TeleportState : public StateBase {
 private:
-  float   circle_;    ///< スキルの有効範囲
+  shared_ptr<TeleportCursor> cursor_;
+  float currentAcc_;      ///< Teleportスキル使用前のフレームレートを一時保存
 
-  ofVec2f telePos_;   ///< 移動先マーカーのポジション
-  ofVec2f teleSize_;  ///< 移動先マーカーのサイズ
-  ofVec2f teleVel_;   ///< 移動先マーカーの加速度
-  float moveSpeed_;   ///< マーカーの移動速度
+  void  movePos(float deltaTime, Player* player, ofxJoystick& input);
+  void  controlPlayerVel(Player* player);
+  void  setupTeleportCursor(Player* player);
 
-  void moveTelePos(ofxJoystick& input); ///< マーカー移動処理
 public:
   // タグを設定
-  TeleportState() { tag_ = Teleport; }
+  TeleportState() { tag_ = TELEPORT; }
   virtual ~TeleportState() {}
 
   virtual void setup(Player* player) override;

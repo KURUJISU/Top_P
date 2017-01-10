@@ -26,12 +26,12 @@ uintmax_t Actor::generateUid() {
  */
 Actor::Actor()
   : uid_            ( generateUid() )
-  , name_           ( "NoName"      )
-  , tag_            ( NONE          )
   , finishSetup_    ( false         )
+  , name_           ( "NoName"      )
+  , tag_            ( -1            )
   , enableUpdate_   ( false         )
   , enableCollision_( false         )
-  , isDead_(false)
+  , destroy_        ( false         )
 {}
 
 // ---------------------------------------------------------------------
@@ -43,8 +43,8 @@ void Actor::disableCollision() { enableCollision_ = false; }
 
 // ---------------------------------------------------------------------
 //
-void Actor::destroy()         { isDead_ = true;  }
-bool Actor::isDead()          { return isDead_;  }
+void Actor::destroy()         { destroy_ = true;  }
+bool Actor::shouldDestroy()   { return destroy_;  }
 
 bool Actor::hasSetup() {
   if (finishSetup_) return true;

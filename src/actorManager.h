@@ -22,7 +22,10 @@ void DrawActors();
 //! 登録されたアクターのGuiを描画します
 void DrawActorsGui();
 
-//! 特定のアクターを管理下から削除します
+//! 登録されたアクターを全て削除します
+void ClearActors();
+
+//! 特定のアクターを削除対象にします
 void DeleteActors(const string& name);
 void DeleteActors(const int     tag);
 

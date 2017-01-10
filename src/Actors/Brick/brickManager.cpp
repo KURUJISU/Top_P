@@ -53,24 +53,23 @@ BrickManager::BrickManager()
     
     if (array[i]) {
     
-      shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+      shared_ptr<Brick> brick = make_shared<Brick>();
     
       ofVec2f pos(ii * brickSize_.x, bricks_[ii].size() * brickSize_.x);
+      
+      brick->setPos(pos + ofVec2f(0, g_local->Height()));
+      brick->setSize(brickSize_);
+      brick->moveTo(pos, curve_, fallTime_);
     
-      spw->setSpawnTime( spawnTime_        ); // スポーンするまでの時間
-      spw->setPos      ( pos               ); // 落下地点
-      spw->setSize     ( brickSize_        ); // Brickのサイズ
-      spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
-    
-      AddActor(spw);
-      bricks_[ii].emplace_back(spw->getActor());
+      AddActor(brick);
+      bricks_[ii].emplace_back(brick);
     }
     ii++;
   }
 }
 
 void BrickManager::setup() {
-  //enableUpdate();
+  enableUpdate();
 }
 
 void BrickManager::update(float deltaTime) {
@@ -85,8 +84,6 @@ void BrickManager::update(float deltaTime) {
   for (int i = 0; i < column_; i++) {
     high = max(int(bricks_[i].size()), high);
     low  = min(int(bricks_[i].size()), low);
-    ofLog() << "high " << high;
-    ofLog() << "low  " << low << endl;
   }
   
   int row;
@@ -124,3 +121,13 @@ void BrickManager::gui() {
     ImGui::EndMenu();
   }
 }
+
+
+float BrickManager::getInterval()  const { return interval_;  }
+float BrickManager::getSpawnTime() const { return spawnTime_; }
+float BrickManager::getFallTime()  const { return fallTime_;  }
+
+// マイナス値はあり得ないのでmaxでセーフティーをかける
+void BrickManager::setInterval(float interval) { interval_  = max(0.0f, interval); }
+void BrickManager::setSpawnTime(float time)    { spawnTime_ = max(0.0f,     time); }
+void BrickManager::setFallTime(float time)     { fallTime_  = max(0.0f,     time); }

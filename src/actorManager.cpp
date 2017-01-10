@@ -61,7 +61,7 @@ void UpdateActors(float deltaTime) {
       if (!actor->getRectangle().intersects(c_actor->getRectangle())) { continue; }
       
       // どちらも生きていれば処理を続ける
-      if (actor->isDead() || c_actor->isDead()) { continue; }
+      if (actor->shouldDestroy() || c_actor->shouldDestroy()) { continue; }
       
       // 各actorに衝突したと伝える
       actor->onCollision(c_actor.get());
@@ -72,7 +72,7 @@ void UpdateActors(float deltaTime) {
   // 削除対象のactorは削除する
   g_actorsList.remove_if(
     [] (const shared_ptr<Actor>& act)->bool {
-      return act->isDead();
+      return act->shouldDestroy();
     }
   );
 }
@@ -96,27 +96,32 @@ void DrawActorsGui() {
 }
 
 /**
- * @brief 特定のアクターを管理下から削除します
- * @param [in] name 削除したいアクターの名前
+ * @brief 登録されたアクターを全て削除します
  */
-void DeleteActors(const string& name) {
-  g_actorsList.remove_if(
-    [&] (const shared_ptr<Actor>& act)->bool {
-      return act->getName() == name;
-    }
-  );
+void ClearActors() {
+  g_actorsList.clear();
 }
 
 /**
- * @brief 特定のアクターを管理下から削除します
+ * @brief 特定のアクターを削除対象にします
+ * @param [in] name 削除したいアクターの名前
+ */
+void DeleteActors(const string& name) {
+  for (auto& act : g_actorsList) {
+    if (act->getName() != name) { continue; }
+    act->destroy();
+  }
+}
+
+/**
+ * @brief 特定のアクターを削除対象にします
  * @param [in] tag 削除したいアクターのタグ
  */
 void DeleteActors(const int tag) {
-  g_actorsList.remove_if(
-    [&] (const shared_ptr<Actor>& act)->bool {
-      return act->getTag() == tag;
-    }
-  );
+  for (auto& act : g_actorsList) {
+    if (act->getTag() != tag) { continue; }
+    act->destroy();
+  }
 }
 
 /**

@@ -1,0 +1,13 @@
+{
+  "Round"             : 10.0,
+
+  "Gravity"           : 1.8,
+  "JumpPow"           : 22.0,
+  "MoveSpeed"         : 7.0,
+  "TeleportCoolTime"  : 5,
+
+  "ProductionTime"    : 0.2,
+
+  "DefaultAnimCurveX" : 7,
+  "DefaultAnimCurveY" : 7,
+}

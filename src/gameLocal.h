@@ -12,20 +12,23 @@
 
 class GameLocal {
 private:
-  int width_;
-  int height_;
+  int     width_;
+  int     height_;
   
-  float lastFrame_;
-  float frameAcc_;
+  float   lastFrame_;
+  float   frameAcc_;
+  float   frameRate_;
   
-  void update(ofEventArgs &args);
-  void windowResized(ofResizeEventArgs &resize);
+  void    update(ofEventArgs &args);
+  void    windowResized(ofResizeEventArgs &resize);
   
 public:
   GameLocal();
   ~GameLocal() {}
 
   void    Setup();                 ///< このクラスの初期化
+
+  bool    Stop;
 
   int     Width() const;           ///< ウィンドウの横幅を返す
   int     Height() const;          ///< ウィンドウの縦幅を返す
@@ -39,6 +42,7 @@ public:
   float   LastFrame() const;       ///< 前のフレームから現在にかけてかかった時間を返す
   float   AccedLastFrame() const;  ///< ゲーム内時間でのLastFrameを返す
   float   FrameAcc() const;        ///< ゲーム内時間の加速度 デフォルト 1
+  float   FrameRate() const;       ///< フレームレートを返します 処理落ちがなければ基本６０
   
   void    SetFrameAcc(float acc);  ///< ゲーム内時間の加速度を設定
 };

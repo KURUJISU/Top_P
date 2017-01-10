@@ -1,0 +1,29 @@
+language: cpp
+os: osx
+osx_image: xcode8.2
+git:
+  depth: 1
+script:
+  - cd ../
+
+# oF version 0.9.7
+  - git clone -b 0.9.7 --depth 1 https://github.com/openframeworks/openFrameworks.git
+  - mv ToTheTop openFrameworks/apps/
+
+# CLONE ADDONS
+# ofxAnimatable
+  - git clone --depth 1 https://github.com/armadillu/ofxAnimatable.git openFrameworks/addons/ofxAnimatable
+# ofxImGui version 1.49
+  - git clone -b 1.49 --depth 1 https://github.com/jvcleave/ofxImGui.git openFrameworks/addons/ofxImGui
+# ofxJSON
+  - git clone --depth 1 https://github.com/jefftimesten/ofxJSON.git openFrameworks/addons/ofxJSON
+# ofxSceneManager
+  - git clone --depth 1 https://github.com/Lacty/ofxSceneManager.git openFrameworks/addons/ofxSceneManager
+# ofxScreenCurtain
+  - git clone --depth 1 https://github.com/armadillu/ofxScreenCurtain.git openFrameworks/addons/ofxScreenCurtain
+# ofxJoystick
+  - git clone --depth 1 https://github.com/Lacty/ofxJoystick.git openFrameworks/addons/ofxJoystick
+
+# Build
+  - cd openframeworks/apps/ToTheTop/
+  - make -j2

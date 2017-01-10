@@ -50,6 +50,8 @@ void ofApp::setup() {
  * シーンに仮想ゲーム内時間
  */
 void ofApp::update() {
+  if (g_local->Stop) { return; }
+  
   float dt = g_local->AccedLastFrame();
   sceneMgr_->update(dt);
 }
@@ -68,9 +70,9 @@ void ofApp::gui() {
   
   ImGui::BeginMainMenuBar();
   if (ImGui::BeginMenu("Root")) {
-    ImGui::Text("%s", string("width  :" + ofToString(ofGetWidth())).c_str());
-    ImGui::Text("%s", string("height :" + ofToString(ofGetHeight())).c_str());
-    ImGui::Text("%s", string("FPS :" + ofToString(ofGetFrameRate() , 1)).c_str());
+    ImGui::Text("%s", string("width  :" + ofToString(g_local->Width())).c_str());
+    ImGui::Text("%s", string("height :" + ofToString(g_local->Height())).c_str());
+    ImGui::Text("%s", string("FPS :" + ofToString(g_local->FrameRate() , 1)).c_str());
     
     if (ImGui::SliderFloat("Acceleration", &acc_, 0, 3)) {
       g_local->SetFrameAcc(acc_);
@@ -94,6 +96,9 @@ void ofApp::gui() {
 
 void ofApp::keyPressed(int key) {
   sceneMgr_->keyPressed(key);
+  if (key == 's') {
+    g_local->Stop = !g_local->Stop;
+  }
 }
 
 void ofApp::keyReleased(int key) {
