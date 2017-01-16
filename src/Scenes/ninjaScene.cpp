@@ -10,53 +10,62 @@
 #include "precompiled.h"
 
 
-void NinjaScene::moveCam() {
-	ofVec2f pos = cam_.getPos();
-	if (pos.y + offsetY_ <= player_->getPos().y) {
-		int offset = player_->getPos().y - (pos.y + offsetY_);
-		pos.y += offset;
-		cam_.setPos(pos);
-	}
-}
-
 void NinjaScene::setup() {
-	cam_.setup();
 	bg_.setup();
 
-	offsetY_ = g_local->Height() * 0.6f;
+	font_.load("Font/mono.ttf", 30);
 
-	AddActor(make_shared<BrickManager>());
-
-	player_ = make_shared<Player>();
-	player_->setPos(g_local->WindowHalfSize());
-	shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
-	spwPlayer->setActor(player_);
-	spwPlayer->setSpawnTime(2);
-	AddActor(spwPlayer);
-
-	shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
-	warpZone->setPos(ofVec2f(ofGetWindowWidth() / 2 + 100, ofGetWindowHeight() / 2 + 100));
-	warpZone->setSize(ofVec2f(40, 40));
-	warpZone->setDistination( ofVec2f( g_local->HalfWidth(), g_local->Height()*2 ) );
-	AddActor(warpZone);
+	auto result = scoreJson.open("Scene/pScene.json");
+	if (result) {
+		score_ = scoreJson["Score"].asInt();
+		rnkScore_.push_back(scoreJson["Score"].asInt());
+		rnkScore_.push_back(scoreJson["1stScore"].asInt());
+		rnkScore_.push_back(scoreJson["2ndScore"].asInt());
+		rnkScore_.push_back(scoreJson["3rdScore"].asInt());
+		rnkScore_.push_back(scoreJson["4thScore"].asInt());
+		rnkScore_.push_back(scoreJson["5thScore"].asInt());
+		sort(rnkScore_.begin(), rnkScore_.end());
+	}
 }
 
 void NinjaScene::update(float deltaTime) {
 	bg_.update(deltaTime);
-	UpdateActors(deltaTime);
 
-	moveCam();
+	UpdateUIs(deltaTime);
 }
 
 void NinjaScene::draw() {
-	ofSetColor(0, 0, 0);
-	ofDrawBitmapString("Ninjya Scene", 20, 20);
-
 	bg_.draw();
 
-	cam_.begin();
-	DrawActors();
-	cam_.end();
+	string str = ofToString(score_);
+	font_.drawString("SCORE",
+		g_local->HalfWidth() - font_.stringWidth("SCORE") / 2, g_local->HalfHeight() - 100);
+	font_.drawString(str,
+		g_local->HalfWidth() - font_.stringWidth(str) / 2, g_local->HalfHeight());
+
+	for (int i = 1; i < 6; i++) {
+		string rnkStr = ofToString(rnkScore_[i]);
+		font_.drawString(ofToString(6 - i) + "th",
+			g_local->HalfWidth() / 2 - font_.stringWidth(ofToString(6 - i) + "th") / 2, g_local->Height() - 40 * i);
+		font_.drawString(rnkStr,
+			g_local->HalfWidth() + font_.stringWidth(rnkStr) / 2, g_local->Height() - 40 * i);
+	}
+
+	DrawUIs();
+}
+
+void NinjaScene::exit() {
+	ofLog() << "NinjaScene exit";
+
+	scoreJson["5thScore"] = rnkScore_[1];
+	scoreJson["4thScore"] = rnkScore_[2];
+	scoreJson["3rdScore"] = rnkScore_[3];
+	scoreJson["2ndScore"] = rnkScore_[4];
+	scoreJson["1stScore"] = rnkScore_[5];
+
+	// 登録されたアクターとUIを削除
+	ClearActors();
+	ClearUIs();
 }
 
 // Gui用に独立した関数
@@ -68,9 +77,6 @@ void NinjaScene::gui() {
 
 	// 背景のGuiを描画
 	bg_.gui();
-
-	// アクターのGuiを描画
-	DrawActorsGui();
 
 	// UIのGuiを描画
 	DrawUIsGui();
