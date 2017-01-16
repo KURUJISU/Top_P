@@ -10,76 +10,154 @@
 #include "precompiled.h"
 
 
+
 void NinjaScene::setup() {
-	bg_.setup();
+	// gameTitle.jsonから設定を読み込む
+	ofxJSON json;
+	json.open("game.json");
+	string j_path = json["gameTitlePath"].asString();
+	json.open(j_path);
 
-	font_.load("Font/mono.ttf", 30);
+	// fontの設定をjsonから読み込む
+	string path = json["Navi"]["fontPath"].asString();
+	int    size = json["Navi"]["fontSize"].asInt();
+	font_.load(path, size);
 
-	auto result = scoreJson.open("Scene/pScene.json");
-	if (result) {
-		score_ = scoreJson["Score"].asInt();
-		rnkScore_.push_back(scoreJson["Score"].asInt());
-		rnkScore_.push_back(scoreJson["1stScore"].asInt());
-		rnkScore_.push_back(scoreJson["2ndScore"].asInt());
-		rnkScore_.push_back(scoreJson["3rdScore"].asInt());
-		rnkScore_.push_back(scoreJson["4thScore"].asInt());
-		rnkScore_.push_back(scoreJson["5thScore"].asInt());
-		sort(rnkScore_.begin(), rnkScore_.end());
+	// 文字の色を読み込む
+	for (int i = 0; i < 3; i++) {
+		naviColor_[i] = json["Navi"]["color"][i].asFloat();
 	}
+
+	cam_.setup();
+	bg_.setup();
+	joy_.setup(GLFW_JOYSTICK_1);
+
+	auto brickMgr = make_shared<BrickManager>();
+	wp_brickMgr_ = brickMgr;
+	AddActor(brickMgr);
+
+	auto player = make_shared<Player>();
+	player->setPos(g_local->WindowHalfSize());
+	shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
+	spwPlayer->setActor(player);
+	spwPlayer->setSpawnTime(1);
+	AddActor(spwPlayer);
+	wp_player_ = player;
+
+	shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
+	warpZone->setSize(ofVec2f(70, 70));
+	warpZone->setPos(ofVec2f(g_local->Width() - 100, g_local->HalfHeight() + 100));
+	warpZone->setDistination(ofVec2f(g_local->HalfWidth(), g_local->Height() * 2));
+	AddActor(warpZone);
+
+	spawn_ = false;
+	information_ = 0;
+	count_ = 0;
+	alpha_ = 0;
 }
 
 void NinjaScene::update(float deltaTime) {
 	bg_.update(deltaTime);
-
+	UpdateActors(deltaTime);
 	UpdateUIs(deltaTime);
+
+	if (!wp_brickMgr_.lock()) {
+		wp_brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
+		return;
+	}
+	if (auto brickMgr = wp_brickMgr_.lock()) {
+		if (brickMgr->shouldUpdate()) {
+			brickMgr->disableUpdate();
+		}
+	}
+
+	if (!spawn_) {
+		DeleteActors(BRICK);
+		if (auto brickMgr = wp_brickMgr_.lock()) {
+			for (int i = 0; i < 5; i++) {
+				brickMgr->createBrick(i, 0);
+			}
+		}
+		spawn_ = true;
+	}
+
+	if (joy_.anyButton()) {
+		information_ = 0;
+		count_ = 0;
+	}
+	else {
+		count_ += deltaTime;
+		if (count_ >= 10) {
+			information_ = 1;
+		}
+	}
+	
+	switch (information_)
+	{
+	case 0:
+		alpha_ += deltaTime / 2;
+		if (alpha_ >= 1) { alpha_ = 1; }
+		break;
+	case 1:
+		alpha_ -= deltaTime / 2;
+		if (alpha_ <= 0) { alpha_ = 0; }
+		break;
+	}
 }
 
 void NinjaScene::draw() {
 	bg_.draw();
 
-	string str = ofToString(score_);
-	font_.drawString("SCORE",
-		g_local->HalfWidth() - font_.stringWidth("SCORE") / 2, g_local->HalfHeight() - 100);
-	font_.drawString(str,
-		g_local->HalfWidth() - font_.stringWidth(str) / 2, g_local->HalfHeight());
+	cam_.begin();
+	DrawActors();
+	cam_.end();
 
-	for (int i = 1; i < 6; i++) {
-		string rnkStr = ofToString(rnkScore_[i]);
-		font_.drawString(ofToString(6 - i) + "th",
-			g_local->HalfWidth() / 2 - font_.stringWidth(ofToString(6 - i) + "th") / 2, g_local->Height() - 40 * i);
-		font_.drawString(rnkStr,
-			g_local->HalfWidth() + font_.stringWidth(rnkStr) / 2, g_local->Height() - 40 * i);
-	}
+	ofPushStyle();
+	ofSetColor(ofFloatColor(naviColor_, alpha_));
+	//操作説明
+	float h = font_.stringHeight("Control Information");
+	font_.drawString("Control Information",
+		50, h + 30);
+	font_.drawString("A = Jump",
+		50, h * 2 + 30);
+	ofPopStyle();
 
-	DrawUIs();
+	ofPushStyle();
+	ofSetColor(ofFloatColor(naviColor_, 1 - alpha_));
+	//スコア
+	h = font_.stringHeight("RANKING");
+
+	font_.drawString("RANKING",
+		50, h + 30);
+	font_.drawString("1st 1500",
+		50, h * 2 + 30);
+	font_.drawString("2nd 1000",
+		50, h * 3 + 30);
+
+	//タイトル
+	font_.drawString("To The Top",
+		g_local->HalfWidth() - font_.stringWidth("To The Top"), g_local->HalfHeight());
+	ofPopStyle();
+}
+
+// Gui用に独立した関数
+void NinjaScene::gui() {
+	// 背景のGuiを描画
+	bg_.gui();
+
+	// アクターのGuiを描画
+	DrawActorsGui();
+
+	// UIのGuiを描画
+	DrawUIsGui();
 }
 
 void NinjaScene::exit() {
 	ofLog() << "NinjaScene exit";
 
-	scoreJson["5thScore"] = rnkScore_[1];
-	scoreJson["4thScore"] = rnkScore_[2];
-	scoreJson["3rdScore"] = rnkScore_[3];
-	scoreJson["2ndScore"] = rnkScore_[4];
-	scoreJson["1stScore"] = rnkScore_[5];
-
 	// 登録されたアクターとUIを削除
 	ClearActors();
 	ClearUIs();
-}
-
-// Gui用に独立した関数
-void NinjaScene::gui() {
-	if (ImGui::BeginMenu("NinjaScene")) {
-		ImGui::Text("this is test scene.");
-		ImGui::EndMenu();
-	}
-
-	// 背景のGuiを描画
-	bg_.gui();
-
-	// UIのGuiを描画
-	DrawUIsGui();
 }
 
 void NinjaScene::keyPressed(int key) {}
