@@ -1,7 +1,7 @@
-
+﻿
 /**
 * @file   warpManager.h
-* @brief  ワープゾーンマネージャ－
+* @brief  ワープゾーンマネージャ−
 *
 * @author f.naoto
 * @date   2017.1.8
@@ -12,8 +12,9 @@
 //! @brief ワープゾーンマネージャークラス
 class WarpManager : public Actor {
 private:
-	shared_ptr<WarpZone> warpZone_;
-	shared_ptr<Actor> player_;
+	weak_ptr<WarpZone> wp_warpZone_;
+	weak_ptr<Actor> wp_player_;
+	weak_ptr<BrickManager> wp_brickMgr_;
 	ofVec2f spawnPos_;
 	ofVec2f destPos_;
 	ofVec2f warpSize_;

@@ -40,6 +40,8 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
 void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {
   // 潰れるエーモト
   if (input.isPressed(Input::Down) && player->onFloor()) {
+    PlaySound(DUCK_START);
+
     player->getAnimY().setRepeatType(LOOP_BACK_AND_FORTH_ONCE);
     player->getAnimY().setCurve(EASE_OUT);
     player->getAnimY().animateFromTo((player->getSize().y / 10) * 11,
@@ -69,7 +71,6 @@ void StandingState::onCollision(Player* player, Actor* c_actor) {
     auto p_vel  = player->getVel();
     auto p_size = player->getSize();
     auto c_pos  = c_actor->getPos();
-    //auto c_vel  = c_actor->getVel();
     auto c_size = c_actor->getSize();
 
     // Standing状態はonFloorがtrueの時しかありえないので条件文を省略

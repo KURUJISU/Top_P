@@ -62,27 +62,32 @@ void DrawUIsGui() {
 }
 
 /**
- * @brief 特定のUIを管理下から削除します
- * @param [in] name 削除したいUIの名前
+ * @brief登録されたUIを全て削除します
  */
-void DeleteUI(const string& name) {
-  g_uisList.remove_if(
-    [&] (const shared_ptr<uiBase>& ui)->bool {
-      return ui->getName() == name;
-    }
-  );
+void ClearUIs() {
+  g_uisList.clear();
 }
 
 /**
- * @brief 特定のUIを管理下から削除します
+ * @brief 特定のUIを管理下から削除対象にする
+ * @param [in] name 削除したいUIの名前
+ */
+void DeleteUI(const string& name) {
+  for (auto& ui : g_uisList) {
+    if (ui->getName() == name)
+      ui->destroy();
+  }
+}
+
+/**
+ * @brief 特定のUIを管理下から削除対象にする
  * @param [in] tag 削除したいUIのタグ
  */
 void DeleteUI(const int tag) {
-  g_uisList.remove_if(
-    [&] (const shared_ptr<uiBase>& ui)->bool {
-       return ui->getTag() == tag;
-    }
-  );
+  for (auto& ui : g_uisList) {
+    if (ui->getTag() == tag)
+      ui->destroy();
+  }
 }
 
 /**

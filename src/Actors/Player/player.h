@@ -15,6 +15,9 @@ class StateManager;
 //! @brief プレイヤークラス
 class Player : public Actor {
 private:
+  int w_, h_;                         ///< デフォルトの画面サイズを保存
+  float wRatio_, hRatio_;             ///< 変更前後の画面倍率
+
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
@@ -24,11 +27,13 @@ private:
   ofxAnimatableFloat texR_, texG_, texB_;
   ofxAnimatableFloat rectR_, rectG_, rectB_;
 
-  ofFloatColor cdRectColor_;          ///< 
-  ofFloatColor cdTexColor_;           ///< 
+  ofFloatColor cdRectColor_;          ///< クールダウン中のRectの色
+  ofFloatColor cdTexColor_;           ///< クールダウン中の顔文字の色
 
   ofxAnimatableFloat animX_, animY_;  ///< アニメーション用変数(x, y)
   AnimCurve          curveX_, curveY_;///< イージングのタイプをＸとＹ個別に用意
+
+  ofxAnimatableFloat cdBarScale_;     ///< CDゲージのアニメーション用
 
   bool    canControl_;                ///< コントローラーからの命令を受け付けるか
   bool    addVelocity_;               ///< 加速度の加算をするか判定
@@ -58,6 +63,8 @@ private:
 
   void setupColorAnim();
   void updateColorAnim(float sync);
+
+  void drawCDBar();
 public:
   Player();
 

@@ -13,24 +13,18 @@
 //! @brief テスト用シーンクラス
 class NinjaScene : public ofxScene {
 private:
-	ofxJoystick joy_;
-	ofTrueTypeFont font_;
-	ofFloatColor   naviColor_;
 	yCamera     cam_;
 	BackGround  bg_;
-	weak_ptr<Player>  wp_player_;
-	weak_ptr<BrickManager> wp_brickMgr_;
-	bool spawn_;
 
-	int information_;
-	float count_;
-	float alpha_;
+	shared_ptr<Player> player_;
+
+	void moveCam();
+	float offsetY_;
 public:
 	void setup() override;
 	void update(float deltaTime) override;
 	void draw() override;
 	void gui() override;
-	void exit() override;
 
 	void keyPressed(int key) override;
 };

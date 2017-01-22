@@ -4,9 +4,13 @@
 
 class WarpZone : public Actor {
 private:
+	bool warp_;
+	float degree_;
+	ofImage tex_;
 	ofVec2f destPos_;
 	Player* player_;
 	ofxAnimatableFloat x_, y_;
+	weak_ptr<BrickManager> wp_brickMgr_;
 public:
 	WarpZone();
 	virtual void setup() override;

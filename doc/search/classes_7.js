@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ninjascene',['NinjaScene',['../class_ninja_scene.html',1,'']]]
+  ['leveler',['Leveler',['../class_leveler.html',1,'']]]
 ];

@@ -10,6 +10,8 @@
 #pragma once
 
 
+class uiBase;
+
 //! UIを追加します
 void AddUI(const shared_ptr<uiBase>& ui);
 
@@ -22,7 +24,10 @@ void DrawUIs();
 //! 登録されたUIのGuiを描画します
 void DrawUIsGui();
 
-//! 特定のUIを管理下から削除します
+//! 登録されたUIを全て削除します
+void ClearUIs();
+
+//! 特定のUIを管理下から削除対象にする
 void DeleteUI(const string& name);
 void DeleteUI(const int     tag);
 

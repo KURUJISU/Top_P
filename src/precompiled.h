@@ -36,9 +36,22 @@ typedef ofxJSONElement ofxJSON;
 // --------------------------------------------------------
 // Utils
 // --------------------------------------------------------
-#include "gameLocal.h"
-#include "input.h"
-#include "yCamera.h"
+#include "Utils/gameLocal.h"
+#include "Utils/actorManager.h"
+#include "Utils/uiManager.h"
+#include "Utils/input.h"
+#include "Utils/yCamera.h"
+
+// --------------------------------------------------------
+// Sound
+// --------------------------------------------------------
+#include "Sound/soundTags.h"
+#include "Sound/soundManager.h"
+
+// --------------------------------------------------------
+// Score
+// --------------------------------------------------------
+#include "Score/scoreManager.h"
 
 // --------------------------------------------------------
 // Applicaton
@@ -55,16 +68,18 @@ typedef ofxJSONElement ofxJSON;
 // --------------------------------------------------------
 #include "UserInterface/uiTags.h"
 #include "UserInterface/uiBase.h"
-#include "uiManager.h"
 
 #include "UserInterface/uiMeter.h"
 
+#include "UserInterface/uiScoreRank.h"
+
+#include "UserInterface/uiInformation.h"
+#include "UserInterface/uiTitle.h"
 // --------------------------------------------------------
 // Actors
 // --------------------------------------------------------
 #include "Actors/actorTags.h"
 #include "Actors/actor.h"
-#include "actorManager.h"
 #include "Actors/spawner.h"
 
 #include "Actors/Player/player.h"

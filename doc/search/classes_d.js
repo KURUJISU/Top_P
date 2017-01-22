@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['yanaiscene',['YanaiScene',['../class_yanai_scene.html',1,'']]],
-  ['ycamera',['yCamera',['../classy_camera.html',1,'']]]
+  ['teleportcursor',['TeleportCursor',['../class_teleport_cursor.html',1,'']]],
+  ['teleportstate',['TeleportState',['../class_teleport_state.html',1,'']]]
 ];

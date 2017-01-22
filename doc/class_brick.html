@@ -113,6 +113,8 @@ Brick の継承関係図</div>
 <tr class="separator:a032802ace1d04e16cb39cadf4eb27cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cc165e36c0bf13046c227194457a398"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick.html#a3cc165e36c0bf13046c227194457a398">onCollision</a> (<a class="el" href="class_actor.html">Actor</a> *c_actor) override</td></tr>
 <tr class="separator:a3cc165e36c0bf13046c227194457a398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a912062556f465225628e7cbfef25b64f"><td class="memItemLeft" align="right" valign="top">const ofVec2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick.html#a912062556f465225628e7cbfef25b64f">getFallPos</a> ()</td></tr>
+<tr class="separator:a912062556f465225628e7cbfef25b64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f7c9d8c1a1241ae41ed5ae6ae09a1d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick.html#a4f7c9d8c1a1241ae41ed5ae6ae09a1d0">moveTo</a> (const ofVec2f &amp;pos, AnimCurve curve, float time)</td></tr>
 <tr class="memdesc:a4f7c9d8c1a1241ae41ed5ae6ae09a1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した位置に移動させる  <a href="#a4f7c9d8c1a1241ae41ed5ae6ae09a1d0">[詳解]</a><br /></td></tr>
 <tr class="separator:a4f7c9d8c1a1241ae41ed5ae6ae09a1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,9 +147,9 @@ Brick の継承関係図</div>
 <tr class="memitem:ab8f46e862574f0c660f895ab6893d0d6 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ab8f46e862574f0c660f895ab6893d0d6">destroy</a> ()</td></tr>
 <tr class="memdesc:ab8f46e862574f0c660f895ab6893d0d6 inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">この関数を呼べばactorManagerから消滅する  <a href="class_actor.html#ab8f46e862574f0c660f895ab6893d0d6">[詳解]</a><br /></td></tr>
 <tr class="separator:ab8f46e862574f0c660f895ab6893d0d6 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afffd6221d512948c5d6212f2b0c3f873 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#afffd6221d512948c5d6212f2b0c3f873">isDead</a> ()</td></tr>
-<tr class="memdesc:afffd6221d512948c5d6212f2b0c3f873 inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">このアクターが死んでいるかどうか  <a href="class_actor.html#afffd6221d512948c5d6212f2b0c3f873">[詳解]</a><br /></td></tr>
-<tr class="separator:afffd6221d512948c5d6212f2b0c3f873 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73fa5ff7bfae79629282d749302be8b4 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a73fa5ff7bfae79629282d749302be8b4">shouldDestroy</a> ()</td></tr>
+<tr class="memdesc:a73fa5ff7bfae79629282d749302be8b4 inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">このアクターをActorManagerから消すべきか  <a href="class_actor.html#a73fa5ff7bfae79629282d749302be8b4">[詳解]</a><br /></td></tr>
+<tr class="separator:a73fa5ff7bfae79629282d749302be8b4 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798b389c713e07414eca5c53fd22ff98 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a798b389c713e07414eca5c53fd22ff98">hasSetup</a> ()</td></tr>
 <tr class="memdesc:a798b389c713e07414eca5c53fd22ff98 inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">setupを実行し終わったか  <a href="class_actor.html#a798b389c713e07414eca5c53fd22ff98">[詳解]</a><br /></td></tr>
 <tr class="separator:a798b389c713e07414eca5c53fd22ff98 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +159,15 @@ Brick の継承関係図</div>
 <tr class="memitem:a37e6764cdfdcad6b67b9f7321efc1a42 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a37e6764cdfdcad6b67b9f7321efc1a42">shouldCollision</a> ()</td></tr>
 <tr class="memdesc:a37e6764cdfdcad6b67b9f7321efc1a42 inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">当たり判定を実行するか  <a href="class_actor.html#a37e6764cdfdcad6b67b9f7321efc1a42">[詳解]</a><br /></td></tr>
 <tr class="separator:a37e6764cdfdcad6b67b9f7321efc1a42 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0fdf0a935517d2e8c21fb736c153700 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ad0fdf0a935517d2e8c21fb736c153700">show</a> ()</td></tr>
+<tr class="memdesc:ad0fdf0a935517d2e8c21fb736c153700 inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクターを表示させる  <a href="class_actor.html#ad0fdf0a935517d2e8c21fb736c153700">[詳解]</a><br /></td></tr>
+<tr class="separator:ad0fdf0a935517d2e8c21fb736c153700 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fb0dbdde2c00f5eef106d7479cc56bb inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a1fb0dbdde2c00f5eef106d7479cc56bb">hide</a> ()</td></tr>
+<tr class="memdesc:a1fb0dbdde2c00f5eef106d7479cc56bb inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクターを非表示にする  <a href="class_actor.html#a1fb0dbdde2c00f5eef106d7479cc56bb">[詳解]</a><br /></td></tr>
+<tr class="separator:a1fb0dbdde2c00f5eef106d7479cc56bb inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae82fb5ffa66d71de538868af3297798 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#aae82fb5ffa66d71de538868af3297798">isHide</a> ()</td></tr>
+<tr class="memdesc:aae82fb5ffa66d71de538868af3297798 inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">非表示設定かどうか  <a href="class_actor.html#aae82fb5ffa66d71de538868af3297798">[詳解]</a><br /></td></tr>
+<tr class="separator:aae82fb5ffa66d71de538868af3297798 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94e441276dad99c01c54bf98393944bd inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a94e441276dad99c01c54bf98393944bd">setName</a> (const string &amp;name)</td></tr>
 <tr class="memdesc:a94e441276dad99c01c54bf98393944bd inherit pub_methods_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">名前を設定する  <a href="class_actor.html#a94e441276dad99c01c54bf98393944bd">[詳解]</a><br /></td></tr>
 <tr class="separator:a94e441276dad99c01c54bf98393944bd inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,9 +221,12 @@ Brick の継承関係図</div>
 <tr class="memitem:aedb6990c9e1877ce5eb7f1874724a2e0 inherit pro_attribs_class_actor"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#aedb6990c9e1877ce5eb7f1874724a2e0">tag_</a></td></tr>
 <tr class="memdesc:aedb6990c9e1877ce5eb7f1874724a2e0 inherit pro_attribs_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">タグ  <a href="class_actor.html#aedb6990c9e1877ce5eb7f1874724a2e0">[詳解]</a><br /></td></tr>
 <tr class="separator:aedb6990c9e1877ce5eb7f1874724a2e0 inherit pro_attribs_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fe252d04098795ddfa335231e5ca6b0 inherit pro_attribs_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a6fe252d04098795ddfa335231e5ca6b0">isDead_</a></td></tr>
-<tr class="memdesc:a6fe252d04098795ddfa335231e5ca6b0 inherit pro_attribs_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">生死  <a href="class_actor.html#a6fe252d04098795ddfa335231e5ca6b0">[詳解]</a><br /></td></tr>
-<tr class="separator:a6fe252d04098795ddfa335231e5ca6b0 inherit pro_attribs_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3960a06d5213139b1221fa39ebf34f79 inherit pro_attribs_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a3960a06d5213139b1221fa39ebf34f79">destroy_</a></td></tr>
+<tr class="memdesc:a3960a06d5213139b1221fa39ebf34f79 inherit pro_attribs_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">生死  <a href="class_actor.html#a3960a06d5213139b1221fa39ebf34f79">[詳解]</a><br /></td></tr>
+<tr class="separator:a3960a06d5213139b1221fa39ebf34f79 inherit pro_attribs_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e276007868e9f95f9d8214c7cef27e1 inherit pro_attribs_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a3e276007868e9f95f9d8214c7cef27e1">hide_</a></td></tr>
+<tr class="memdesc:a3e276007868e9f95f9d8214c7cef27e1 inherit pro_attribs_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示・非表示  <a href="class_actor.html#a3e276007868e9f95f9d8214c7cef27e1">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e276007868e9f95f9d8214c7cef27e1 inherit pro_attribs_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af03ef17fa4a9de47d88446a0b6dba246 inherit pro_attribs_class_actor"><td class="memItemLeft" align="right" valign="top">ofVec3f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#af03ef17fa4a9de47d88446a0b6dba246">pos_</a></td></tr>
 <tr class="memdesc:af03ef17fa4a9de47d88446a0b6dba246 inherit pro_attribs_class_actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置  <a href="class_actor.html#af03ef17fa4a9de47d88446a0b6dba246">[詳解]</a><br /></td></tr>
 <tr class="separator:af03ef17fa4a9de47d88446a0b6dba246 inherit pro_attribs_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -275,7 +289,7 @@ Brick の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_8h_source.html">brick.h</a> の <a class="el" href="brick_8h_source.html#l00020">20</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8h_source.html">brick.h</a> の <a class="el" href="brick_8h_source.html#l00022">22</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -305,7 +319,26 @@ Brick の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#acd760a99c63d562920841c7a0318a3e3">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00033">33</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00039">39</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a912062556f465225628e7cbfef25b64f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a912062556f465225628e7cbfef25b64f">&sect;&nbsp;</a></span>getFallPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const ofVec2f Brick::getFallPos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00047">47</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -351,7 +384,7 @@ Brick の継承関係図</div>
   </dd>
 </dl>
 
-<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00047">47</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00062">62</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -404,7 +437,7 @@ Brick の継承関係図</div>
   </dd>
 </dl>
 
-<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00065">65</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00082">82</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -434,7 +467,7 @@ Brick の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#ade731ab1129c7b6876191933941e5e4d">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00038">38</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00044">44</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -462,7 +495,7 @@ Brick の継承関係図</div>
   </dd>
 </dl>
 
-<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00080">80</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00099">99</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -491,7 +524,7 @@ Brick の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#a64c3aed4bc53afa6cda37e074e6b6305">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00021">21</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00023">23</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -521,7 +554,7 @@ Brick の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#aeae78eb901e55b041d43fbee7cfd7c37">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00026">26</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_8cpp_source.html">brick.cpp</a> の <a class="el" href="brick_8cpp_source.html#l00028">28</a> 行目に定義があります。</p>
 
 </div>
 </div>

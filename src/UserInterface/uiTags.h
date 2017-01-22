@@ -14,4 +14,7 @@
  */
 enum UITag {
   METER,        ///< メーター
+  SCORE_RANK,   ///< スコア
+
+	INFORMATION,
 };
