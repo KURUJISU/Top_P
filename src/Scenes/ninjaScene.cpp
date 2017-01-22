@@ -10,42 +10,62 @@
 #include "precompiled.h"
 
 
-void NinjaScene::moveCam() {
-	ofVec2f pos = cam_.getPos();
-	if (pos.y + offsetY_ <= player_->getPos().y) {
-		int offset = player_->getPos().y - (pos.y + offsetY_);
-		pos.y += offset;
-		cam_.setPos(pos);
-	}
-}
 
 void NinjaScene::setup() {
 	cam_.setup();
 	bg_.setup();
 
-	offsetY_ = g_local->Height() * 0.6f;
+	AddUI(make_shared<uiTitle>());
 
-	AddActor(make_shared<BrickManager>());
+	joy_.setup(GLFW_JOYSTICK_1);
 
-	player_ = make_shared<Player>();
-	player_->setPos(g_local->WindowHalfSize());
+	auto brickMgr = make_shared<BrickManager>();
+	wp_brickMgr_ = brickMgr;
+	AddActor(brickMgr);
+
+	auto player = make_shared<Player>();
+	player->setPos(g_local->WindowHalfSize());
 	shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
-	spwPlayer->setActor(player_);
-	spwPlayer->setSpawnTime(2);
+	spwPlayer->setActor(player);
+	spwPlayer->setSpawnTime(1);
 	AddActor(spwPlayer);
+	wp_player_ = player;
 
 	shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
-	warpZone->setPos(ofVec2f(ofGetWindowWidth() / 2 + 100, ofGetWindowHeight() / 2 + 100));
-	warpZone->setSize(ofVec2f(40, 40));
-	warpZone->setDistination( ofVec2f( g_local->HalfWidth(), g_local->Height()*2 ) );
+	warpZone->setSize(ofVec2f(70, 70));
+	warpZone->setPos(ofVec2f(g_local->Width() - 100, g_local->HalfHeight() + 100));
+	warpZone->setDistination(ofVec2f(g_local->HalfWidth(), g_local->Height() * 2));
 	AddActor(warpZone);
+
+	spawn_ = false;
+	information_ = 0;
+	count_ = 0;
+	alpha_ = 0;
 }
 
 void NinjaScene::update(float deltaTime) {
 	bg_.update(deltaTime);
 	UpdateActors(deltaTime);
+	UpdateUIs(deltaTime);
 
-	moveCam();
+	if (!wp_brickMgr_.lock()) {
+		wp_brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
+		return;
+	}
+	if (auto brickMgr = wp_brickMgr_.lock()) {
+		if (brickMgr->shouldUpdate()) {
+			brickMgr->disableUpdate();
+		}
+	}
+	if (!spawn_) {
+		DeleteActors(BRICK);
+		if (auto brickMgr = wp_brickMgr_.lock()) {
+			for (int i = 0; i < 5; i++) {
+				brickMgr->createBrick(i, 0);
+			}
+		}
+		spawn_ = true;
+	}
 }
 
 void NinjaScene::draw() {
@@ -57,6 +77,8 @@ void NinjaScene::draw() {
 	cam_.begin();
 	DrawActors();
 	cam_.end();
+
+	DrawUIs();
 }
 
 // Gui用に独立した関数
