@@ -2,26 +2,27 @@
 #include "precompiled.h"
 
 
-uiInformation::uiInformation(){
+uiInformation::uiInformation() {
 	name_ = "uiInformation";
 	tag_ = INFORMATION;
 }
 
-void uiInformation::setup(){
+void uiInformation::setup() {
+	font_.load("Font/gothic.ttf", 30);
+
 	ofxJSON json;
 	json.open("UI/information.json");
-
-	informations_.push_back(json["sentence"].asString());
-	wordWidth_.push_back(font_.stringWidth(informations_[0]));
-
-	font_.load("Font/mono.ttf", 20);
+	for (int i = 0; i < json["sentence"].size(); i++) {
+		informations_.push_back(json["sentence"][i].asString());
+	}
 }
 
-void uiInformation::update(float deltaTime){}
+void uiInformation::update(float deltaTime) {}
 
-void uiInformation::draw(){
-	ofSetColor(ofColor::blue);
+void uiInformation::draw() {
+	ofSetColor(ofColor::white);
 	float stringHight = font_.stringHeight("A");
-	ofLog() << informations_[0];
-	font_.drawString("a", g_local->HalfWidth(), g_local->HalfHeight());
+	for (int i = 0; i < informations_.size(); i++) {
+		font_.drawString(informations_[i], pos_.x, pos_.y + (stringHight*i));
+	}
 }

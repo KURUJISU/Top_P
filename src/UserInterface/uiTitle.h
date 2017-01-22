@@ -5,8 +5,8 @@
 
 class uiTitle :public uiBase {
 private:
-	weak_ptr<uiScoreRank> uiScore_;
-	weak_ptr<uiInformation> uiInfo_;
+	weak_ptr<uiScoreRank> wp_uiScore_;
+	weak_ptr<uiInformation> wp_uiInfo_;
 public:
 	uiTitle();
 	void setup() override;

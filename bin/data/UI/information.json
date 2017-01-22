@@ -1,6 +1,7 @@
 {
-  "sentence": {
-    "move": "Å© & Å® = Move",
-    "jump": " B = Jump"
-  }
+  "sentence": [
+    "Left & Right = Move",
+    "B = Jump",
+    "A = teleport",
+  ]
 }
